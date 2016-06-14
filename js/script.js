@@ -7,6 +7,7 @@ function Ticket(movie, time, age){
 }
 
 Ticket.prototype.calc = function(movie){
+  var hours = movie.time.split(":")
   var discount = 0;
   if(!movie.firstRelease){
     if(this.age <= 12){
@@ -17,8 +18,8 @@ Ticket.prototype.calc = function(movie){
       discount = 0;
     }
 
-    if(matinee(this.time)){
-      discount += .17;
+    if(matinee(parseInt(hours[0]))){
+      discount += .05;
     }
   }
   if(discount > 0){
