@@ -55,25 +55,39 @@ var moana = new Movie("mo", "Moana", true, ["12:45", "17:35", "19:25"]);
 var whiskeyTango = new Movie("wt", "Whiskey Tango Foxtrot", true, ["12:45", "18:35", "19:00"])
 
 var movArr = [starWars, moana, whiskeyTango]
+var selectedMovie = Object;
+var mvTimeIndex = 0;
 
 $(function(){
   movArr.forEach(function(movie){
     $('.movielist').append('<li>' + renderTimes(movie)  + " " + movie.name + "</li>");
   });
 
-  $('button').click(function(event){
-    debugger;
+  $('button.btn-time').click(function(event){
     var btnId = event.target.id;
     var mvId = btnId.charAt(0) + btnId.charAt(1);
-    var mvTimeIndex = btnId.charAt(2);
-    var selectedMovie = movArr.forEach(function(movie){
-        if(movie.id === mvId){
-          return movie;
+    mvTimeIndex = parseInt(btnId.charAt(2));
+
+      for(i = 0; i < movArr.length; i++)  {
+        if(movArr[i].id === mvId) {
+          selectedMovie = movArr[i];
+          i = movArr.length;
         }
-    });
-    console.log(JSON.stringify(selectedMovie))
+      };
+    //debugger;
+    $('h2#movie-title').text(selectedMovie.name + " " + selectedMovie.showings[mvTimeIndex]);
+    $('#myModal').modal().toggle();
 
   });
 
+  $('#ticket-display').submit(function(event){
+    event.preventDefault();
+    var tixAge = $('#age').val();
+    var tix = new Ticket(selectedMovie.name, selectedMovie.showings[mvTimeIndex], tixAge);
+    var ticketCost = tix.calc(tix);
+    $('#totals').text("");
+    $('#totals').append("<h2>$" + ticketCost.toFixed(2)  + "</h2>");
+
+  })
 
 });

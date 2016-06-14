@@ -28,6 +28,31 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <h2 id="movie-title"></h2>
+            <form id="ticket-display">
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" name="age" id="age" min="1">
+              </div>
+              <button type="submit" class="btn btn-primary" id="verify-age">Verify Age</button>
+            </form>
+            <div id="totals">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <div class="content">
       <div class="container">
         <div class="movies">
@@ -36,6 +61,7 @@
         </div>
       </div>
     </div>
+
     <!-- javascript for speedier loading -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
